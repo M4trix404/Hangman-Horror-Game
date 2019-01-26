@@ -1,0 +1,99 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!--Reset -->
+    <link rel="stylesheet" href="css/reset.css">
+
+    <script src="../audio" type="text/javascript"></script>
+
+    <title>Hangman Game</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!-- CSS -->
+    <link rel="stylesheet"  href="css/styles.css">
+    <!-- Fonts -->
+	  <link href="https://fonts.googleapis.com/css?family=Modern+Antiqua" rel="stylesheet">
+  
+    
+  </head>
+  
+  <body>
+<header>
+  		<div class="jumbotron jumbotron-fluid bg-dark text-danger">
+  	<div class="container text-center text-danger">
+  <h1 class="display-4">Hangman Horror Game</h1>
+
+  <p class="lead">This is a simple hangman game for those who love horror flicks. Can you guess the name of the horror movie before the Reaper gets you?</p>
+  
+  <br> </header> 
+<main class='container'>
+  	<div class="container">	
+  <div class="row">
+    <div class="col-4">
+      <img src="images/grimreaper.png" class="w-100 img-fluid" alt="grim reaper image">
+    </div>
+
+<div class="col-8">
+<div id='button-container' class='button-container bg-danger text-center'></div>
+      <!-- First Panel: Holds the Word to Guess (blanks and guessed word). -->
+          <div class='panel panel-default'>
+            <div class='panel-heading'>
+              
+            	<button id="start">
+              <h3 class='panel-title'><strong>Start Game</strong></h3></button>
+        
+            </div>
+            <hr class="my-3">
+        
+			
+            <div class='panel-body'>
+              <h4 class="panel-title"><strong>Word to Guess</strong>
+              <div id='underScore'>_ _ _ _ _ _ _ _ _
+
+            </h4>
+              </div>
+            </div>
+          
+
+      <div class="guessesLeft">Guesses Remaining:<span id='guess-counter'>0</span></div>
+
+
+      <div class="wrongGuess">Wrong guesses:<span id='wrong-guess'>0</span></div> 
+     
+      <div class='panel panel-default'>
+        <div class='panel-body'>
+      <p id='games-won'>Wins: <span id='win-counter'>0</span></p>
+    </div>
+  </div>
+
+      <div class='panel panel-default'>
+        <div class='panel-body'>
+      <p id='games-lost'>Losses: <span id='loss-counter'>0</span></p>
+
+    </div>
+  </div>
+      
+    <div class="container">
+        <div class="row">
+            
+                <footer>
+                    &copy; Copyright 2018 Attwa Rainey
+                </footer>
+            </div>
+       </div>
+</div>
+ 
+  </div>  
+    
+    
+    <script src="assets/game.js">
+    </script>
+  
+
+  </body>
+</html>
