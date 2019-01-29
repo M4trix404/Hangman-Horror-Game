@@ -198,13 +198,13 @@ function endOfRound() {
 }
   
 //==========================================================        
-
 // Starts the Game by running the startGame() function
 startGame();
 
 // Then initiates the function for capturing key clicks.
-document.onkeyup = function(event) {
-
+//document.onkeyup = function(event) {
+document.getElementById("startBtn").addEventListener("click", startGame);
+  
   // Converts all key clicks to lowercase letters.
   letterGuessed = String.fromCharCode(event.keyCode).toLowerCase();
 
@@ -214,6 +214,10 @@ document.onkeyup = function(event) {
   // Runs the code that ends each round.
   endOfRound();
 };
+
+
+
+
 
 
 
