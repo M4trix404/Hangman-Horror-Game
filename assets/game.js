@@ -30,13 +30,18 @@ var winCounter = 0;
 var lossCounter = 0;
 var numGuesses = 10;
 
+// Game sound effects for user wins & losses
+var wingame = document.getElementById('wingame');
+var losegame = document.getElementById('losegame');
+
 // FUNCTIONS (These are bits of code that we will call upon to run when needed).
 // ==================================================================================================
 
-// startGame()
+startGame()
 // It's how we we will start and restart the game.
 // (Note: It's not being run here. Function declarations like this are made for future use.)
-function startGame() {
+
+
 
   // Reset the guesses back to 0.
   numGuesses = 9;
@@ -164,7 +169,7 @@ function endOfRound() {
     alert("You win!");
 
     function onAlert(){
-    var audio = new Audio("magic.mp3");
+    var wingame = new Audio("magic.mp3");
     audio.play();
 
 }
@@ -183,7 +188,9 @@ function endOfRound() {
 
     // Give the user an alert
     alert("You lose!");
-   
+   function onAlert(){
+    var losegame = new Audio("evillaugh.mp3");
+    audio.play();
 
 
 
@@ -203,8 +210,9 @@ function endOfRound() {
 startGame();
 
 // Then initiates the function for capturing key clicks.
-document.onkeyup = function(event) {
-
+//document.onkeyup = function(event) {
+document.getElementById("startBtn").addEventListener("click", startGame);
+  
   // Converts all key clicks to lowercase letters.
   letterGuessed = String.fromCharCode(event.keyCode).toLowerCase();
 
@@ -214,13 +222,6 @@ document.onkeyup = function(event) {
   // Runs the code that ends each round.
   endOfRound();
 };
-
-
-
-
-
-
-
 
 
 
