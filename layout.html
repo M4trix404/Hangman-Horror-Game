@@ -9,8 +9,6 @@
     <!--Reset -->
     <link rel="stylesheet" href="css/reset.css">
 
-    <script src="../audio" type="text/javascript"></script>
-
     <title>Hangman Game</title>
 
     <!-- Bootstrap CSS -->
@@ -30,39 +28,39 @@
   <h1 class="display-4">Hangman Horror Game</h1>
 
   <p class="lead">This is a simple hangman game for those who love horror flicks. Can you guess the name of the horror movie before the Reaper gets you?</p>
-  <audio src="audio/evillaugh.mp3" controls autoplay loop></audio>
+  <br><br>
   
-  <br> </header> 
-<main class='container'>
-    <div class="container"> 
-  <div class="row">
-    <div class="col-4">
-      <img src="images/grimreaper.png" class="w-100 img-fluid" alt="grim reaper image">
+   <audio controls loop>
+          <source src="audio/Creepykeys.mp3" type="audio/mp3">
+            your browser does not support audio tag
+  </audio>
+</header> 
+      
+      <main class='container'>
+        <div class="container"> 
+          <div class="row">
+              <div class="col-4">
+            <img src="images/grimreaper.png" class="w-100 img-fluid" alt="grim reaper image">
+      </div>
 
-    </div>
-
-<div class="col-8">
-<div id='button-container' class='button-container bg-danger text-center'></div>
+    <div class="col-8">
+      <div id='button-container' class='button-container bg-danger text-center'></div>
+      
       <!-- First Panel: Holds the Word to Guess (blanks and guessed word). -->
-          <div class='panel panel-default'>
-            <div class='panel-heading'>
-              
-              <button type="button" id="startBtn" onclick="initialize()">
+        <div class='panel panel-default'>
+        <div class='panel-heading'>    
+        <button type="button">
               <h3 class='panel-title'><strong>Start Game</strong></h3></button>
-        
             </div>
             <hr class="my-3">
-        
-      
             <div class='panel-body'>
               <h4 class="panel-title"><strong>Word to Guess</strong>
               <div id='underScore'>_ _ _ _ _ _ _ _ _
-
             </h4>
               </div>
             </div>
-          
 
+          
       <div class="guessesLeft">Guesses Remaining:<span id='guess-counter'>0</span></div>
 
 
@@ -77,11 +75,10 @@
       <div class='panel panel-default'>
         <div class='panel-body'>
       <p id='games-lost'>Losses: <span id='loss-counter'>0</span></p>
-
-    </div>
-  </div>
-      
-    <div class="container">
+          </div>
+        </div> 
+       
+           <div class="container">
         <div class="row">
             
                 <footer>
@@ -89,13 +86,10 @@
                 </footer>
             </div>
        </div>
-</div>
- 
-  </div>  
+    </div>
+
     
-    <audio src="audio/evillaugh.mp3" id="losegame"></audio>
-    <audio src="audio/magic.mp3" id="wingame"></audio>
-    <script src="assets/game.js">
+    <script src ="assets/game.js">
     </script>
   
   </body>

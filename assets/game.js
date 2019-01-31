@@ -1,23 +1,22 @@
 
-// Create an array of word for the game 
-
-
+// Array of movie words.
 
 var movieWord = ['aliens', 'hellraiser', 'poltergeist', 'phantasm', 'saw',
-'scream', 'mimic', 'halloween', 'insidious', 'it', 'creepshow', 'pumpkinhead', 'videodrome', 'annabelle', 'candyman', 'alien', 'psycho', 'carrie', 'jaws', 'slither', 'house', 'eraserhead', 'creep',
-   'dracula', 'suspiria', 'zombieland', 'raw'];
+    'scream', 'mimic', 'halloween', 'insidious', 'it', 'creepshow', 'pumpkinhead', 'videodrome', 'annabelle', 'candyman', 'alien', 'psycho', 'carrie', 'jaws', 'slither', 'house', 'eraserhead', 'creep',
+      'dracula', 'suspiria', 'zombieland', 'raw', 'flatliners', 'jeeperscreepers'];
 
-//Choose word randomly / Computer selected solution will be held here.
+
+// Computer selected word will be held here.
 var chosenWord = "";
 
-// This will break the solution into individual letters to be stored in array.
+// This will break the word into individual letters to be stored in an array.
 var lettersInChosenWord = [];
 
 // This will be the number of blanks we show based on the solution.
 var numBlanks = 0;
 
-// Holds a mix of blank and solved letters (ex: 'n, _ _, n, _').
-var blanksAndSuccesses = [];
+// Holds a mix of blank and solved letters (ex: 'a, _ _, a, _').
+var blanksAndRightGuesses = [];
 
 // Holds all of the wrong guesses.
 var wrongGuesses = [];
@@ -28,23 +27,18 @@ var letterGuessed = "";
 // Game counters
 var winCounter = 0;
 var lossCounter = 0;
-var numGuesses = 10;
-
-// Game sound effects for user wins & losses
-var wingame = document.getElementById('wingame');
-var losegame = document.getElementById('losegame');
+var numGuesses = 8;
 
 // FUNCTIONS (These are bits of code that we will call upon to run when needed).
 // ==================================================================================================
 
-startGame()
+// startGame()
 // It's how we we will start and restart the game.
 // (Note: It's not being run here. Function declarations like this are made for future use.)
-
-
+function startGame() {
 
   // Reset the guesses back to 0.
-  numGuesses = 9;
+  numGuesses = 8;
 
   // Solution chosen randomly from wordList.
   chosenWord = movieWord[Math.floor(Math.random() * movieWord.length)];
@@ -58,28 +52,28 @@ startGame()
   // We print the solution in console (for testing).
   console.log(chosenWord);
 
-  
-  // Here we reset the guess and success array at each round.
-  blanksAndSuccesses = [];
+  // CRITICAL LINE
+  // Here we *reset* the guess and success array at each round.
+  blanksAndRightGuesses = [];
 
- 
-  // Here we reset the wrong guesses from the previous round.
+  // CRITICAL LINE
+  // Here we *reset* the wrong guesses from the previous round.
   wrongGuesses = [];
 
-  // Fill up the blanksAndSuccesses list with appropriate number of blanks.
+  // Fill up the blanksAndRightGuesses list with appropriate number of blanks.
   // This is based on number of letters in solution.
   for (var i = 0; i < numBlanks; i++) {
-    blanksAndSuccesses.push("_");
+    blanksAndRightGuesses.push("_");
   }
 
   // Print the initial blanks in console.
-  console.log(blanksAndSuccesses);
+  console.log(blanksAndRightGuesses);
 
   // Reprints the guessesLeft to 9.
   document.getElementById("guess-counter").innerHTML = numGuesses;
 
   // Prints the blanks at the beginning of each round in the HTML.
-  document.getElementById("underScore").innerHTML = blanksAndSuccesses.join(" ");
+  document.getElementById("underScore").innerHTML = blanksAndRightGuesses.join(" ");
 
   // Clears the wrong guesses from the previous round.
   document.getElementById("wrong-guess").innerHTML = wrongGuesses.join(" ");
@@ -112,17 +106,17 @@ function checkLetters(letter) {
     // Loop through the word
     for (var j = 0; j < numBlanks; j++) {
 
-      // Populate the blanksAndSuccesses with every instance of the letter.
+      // Populate the blanksAndRightGuesses with every instance of the letter.
       if (chosenWord[j] === letter) {
 
         // Here we set specific blank spaces to equal the correct letter
         // when there is a match.
-        blanksAndSuccesses[j] = letter;
+        blanksAndRightGuesses[j] = letter;
       }
     }
 
     // Log the current blanks and successes for testing.
-    console.log(blanksAndSuccesses);
+    console.log(blanksAndRightGuesses);
   }
 
   // If the letter doesn't exist at all...
@@ -146,21 +140,21 @@ function endOfRound() {
   // telling us how many wins, losses, and guesses are left.
   console.log("WinCount: " + winCounter + " | LossCount: " + lossCounter + " | NumGuesses: " + numGuesses);
 
-  // Updates to HTML
-  // ======================================
+  // HTML UPDATES
+  // ============
 
   // Update the HTML to reflect the new number of guesses.
   document.getElementById("guess-counter").innerHTML = numGuesses;
 
   // This will print the array of guesses and blanks onto the page.
-  document.getElementById("underScore").innerHTML = blanksAndSuccesses.join(" ");
+  document.getElementById("underScore").innerHTML = blanksAndRightGuesses.join(" ");
 
   // This will print the wrong guesses onto the page.
   document.getElementById("wrong-guess").innerHTML = wrongGuesses.join(" ");
 
   // If our hangman string equals the solution.
   // (meaning that we guessed all the letters to match the solution)...
-  if (lettersInChosenWord.toString() === blanksAndSuccesses.toString()) {
+  if (lettersInChosenWord.toString() === blanksAndRightGuesses.toString()) {
 
     // Add to the win counter
     winCounter++;
@@ -168,11 +162,6 @@ function endOfRound() {
     // Give the user an alert
     alert("You win!");
 
-    function onAlert(){
-    var wingame = new Audio("magic.mp3");
-    audio.play();
-
-}
     // Update the win counter in the HTML
     document.getElementById("win-counter").innerHTML = winCounter;
 
@@ -187,12 +176,7 @@ function endOfRound() {
     lossCounter++;
 
     // Give the user an alert
-    alert("You lose!");
-   function onAlert(){
-    var losegame = new Audio("evillaugh.mp3");
-    audio.play();
-
-
+    alert("You lose");
 
     // Update the loss counter in the HTML
     document.getElementById("loss-counter").innerHTML = lossCounter;
@@ -203,16 +187,16 @@ function endOfRound() {
   }
 
 }
-  
-//==========================================================        
+
+// MAIN PROCESS (THIS IS THE CODE THAT CONTROLS WHAT IS ACTUALLY RUN)
+// ==================================================================
 
 // Starts the Game by running the startGame() function
 startGame();
 
 // Then initiates the function for capturing key clicks.
-//document.onkeyup = function(event) {
-document.getElementById("startBtn").addEventListener("click", startGame);
-  
+document.onkeyup = function(event) {
+
   // Converts all key clicks to lowercase letters.
   letterGuessed = String.fromCharCode(event.keyCode).toLowerCase();
 
@@ -222,8 +206,3 @@ document.getElementById("startBtn").addEventListener("click", startGame);
   // Runs the code that ends each round.
   endOfRound();
 };
-
-
-
-
-        
